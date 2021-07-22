@@ -1,4 +1,48 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
+//import router
+import router from "./router";
 
-createApp(App).mount('#app')
+// Alert
+import VueSweetalert2 from "vue-sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
+//import store vuex
+import store from "./store";
+const app = createApp(App);
+
+//gunakan router di vue js dengan plugin "use"
+app.use(router);
+
+// panggil Alert yang di import
+app.use(VueSweetalert2);
+
+//gunakan store di vue js dengan plugin "use"
+app.use(store);
+
+//define mixins for global function
+app.mixin({
+  methods: {
+    //money thousands
+    moneyFormat(number) {
+      let reverse = number
+          .toString()
+          .split("")
+          .reverse()
+          .join(""),
+        thousands = reverse.match(/\d{1,3}/g);
+      thousands = thousands
+        .join(".")
+        .split("")
+        .reverse()
+        .join("");
+      return thousands;
+    },
+
+    //calculate discount
+    calculateDiscount(product) {
+      return product.price - (product.price * product.discount) / 100;
+    },
+  },
+});
+
+app.mount("#app");
