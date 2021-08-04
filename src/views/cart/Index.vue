@@ -311,8 +311,12 @@ import { onMounted, computed, reactive } from "vue";
 import { useStore } from "vuex"; // <-- vuex
 import Api from "../../api/Api";
 import { useRouter } from "vue-router"; // vue router
+import { useSwal } from "../../useSwal";
+
 export default {
   setup() {
+    const Swal = useSwal();
+
     //store vuex
     const store = useStore();
     //vue router
@@ -343,6 +347,15 @@ export default {
     function removeCart(cart_id) {
       //panggil actions "removeCart" di module "cart" dengan parameter "cart_id"
       store.dispatch("cart/removeCart", cart_id);
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 5000,
+        icon: "success",
+        title: "Success",
+        text: "Data Berhasil di hapus!",
+      });
     }
 
     // define state form
@@ -467,7 +480,7 @@ export default {
           address: state.address,
           grandTotal: state.grandTotal,
         };
-        
+
         store
           .dispatch("cart/checkout", data)
           .then((response) => {

@@ -80,10 +80,13 @@
 import { ref, reactive } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import { useSwal } from "../../useSwal";
 
 export default {
   methods: {},
   setup() {
+    const Swal = useSwal();
+
     //user state
     const user = reactive({
       email: "",
@@ -125,6 +128,15 @@ export default {
         .catch((error) => {
           //assign validaation message
           validation.value = error;
+          Swal.fire({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 5000,
+            icon: "error",
+            title: "Gagal",
+            text: "Gagal Login! ",
+          });
         });
     }
 

@@ -2,19 +2,15 @@ import { createApp } from "vue";
 import App from "./App.vue";
 //import router
 import router from "./router";
+import Swal from "./useSwal";
 
-// Alert
-import VueSweetalert2 from "vue-sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
 //import store vuex
 import store from "./store";
 const app = createApp(App);
 
 //gunakan router di vue js dengan plugin "use"
+app.use(Swal);
 app.use(router);
-
-// panggil Alert yang di import
-app.use(VueSweetalert2);
 
 //gunakan store di vue js dengan plugin "use"
 app.use(store);

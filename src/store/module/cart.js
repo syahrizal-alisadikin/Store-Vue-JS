@@ -1,6 +1,7 @@
 //import global API
 import Api from "../../api/Api";
 import router from "../../router";
+
 const cart = {
   //set namespace true
   namespaced: true,
@@ -71,6 +72,7 @@ const cart = {
           //commit mutation TOTAL_CART
           commit("TOTAL_CART", response.data.total);
         });
+      
         router.push({ name: "cart" });
       });
     },

@@ -95,9 +95,13 @@
 import { computed, onMounted } from "vue"; // computed dan onMounted
 import { useStore } from "vuex"; // store Vuex
 import { useRoute, useRouter } from "vue-router";
+import { useSwal } from "../../useSwal";
 
 export default {
+  methods: {},
   setup() {
+    const Swal = useSwal();
+
     // vue route
     const route = useRoute();
 
@@ -134,6 +138,16 @@ export default {
         price: price,
         weight: weight,
         quantity: 1,
+      });
+
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 5000,
+        icon: "success",
+        title: "Success",
+        text: "Data Berhasil keranjang!",
       });
     }
 
