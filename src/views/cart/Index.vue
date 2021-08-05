@@ -484,6 +484,13 @@ export default {
         store
           .dispatch("cart/checkout", data)
           .then((response) => {
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              showConfirmButton: false,
+              timer: 5000,
+              text: "Silahkan Klik Bayar Untuk pembayaran!",
+            });
             //jika berhasil, arahakan ke detail order dengan parameter snap_token midtrans
             router.push({
               name: "detail_order",
