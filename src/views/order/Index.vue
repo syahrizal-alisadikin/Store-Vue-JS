@@ -49,6 +49,15 @@
                   </tr>
                 </tbody>
               </table>
+              <div class="text-center">
+                <button
+                  type="button"
+                  class="btn btn-primary btn-md"
+                  @click.prevent="loadMore"
+                >
+                  <span class="fa fa-arrow-down"></span> LIHAT LEBIH BANYAK
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -83,10 +92,27 @@ export default {
       //panggil getter dengan nama "getOrder" di module "order" vuex
       return store.getters["order/getOrder"];
     });
+
+    function loadMore() {
+      store.dispatch("order/getLoadmore");
+    }
+
+    //get status MoreExists
+    const MoreExists = computed(() => {
+      return store.state.order.MoreExists;
+    });
+
+    // //get nextPage
+    // const nextPage = computed(() => {
+    //   return store.state.order.nextPage;
+    // });
     //return a state and function
     return {
       store,
       orders,
+      loadMore,
+      MoreExists,
+      // nextPage,
     };
   },
 };

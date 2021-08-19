@@ -72,7 +72,7 @@ const cart = {
           //commit mutation TOTAL_CART
           commit("TOTAL_CART", response.data.total);
         });
-      
+
         router.push({ name: "cart" });
       });
     },
@@ -150,7 +150,7 @@ const cart = {
     //checkout
     checkout({ commit }, data) {
       return new Promise((resolve, reject) => {
-        console.log(data);
+        // console.log(data);
         Api.post("/checkout", {
           courier: data.courier_type,
           service: data.courier_service,
